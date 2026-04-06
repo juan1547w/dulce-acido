@@ -1,0 +1,1085 @@
+ <!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dulce y Ácido — Guía Digital & QR</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  :root {
+    --limon: #D4E84A;
+    --limon-dark: #B5CC20;
+    --verde: #2D5016;
+    --verde-medio: #4A7C2F;
+    --crema: #F9F4E3;
+    --acido: #FF6B35;
+    --negro: #1A1A1A;
+    --gris: #6B6B6B;
+    --blanco: #FFFFFF;
+  }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+font-family: ‘DM Sans’, sans-serif;
+background: var(–crema);
+color: var(–negro);
+overflow-x: hidden;
+}
+
+/* ── HERO ── */
+.hero {
+background: var(–verde);
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+padding: 60px 24px;
+position: relative;
+overflow: hidden;
+}
+
+.hero::before {
+content: ‘’;
+position: absolute;
+width: 600px; height: 600px;
+border-radius: 50%;
+background: radial-gradient(circle, rgba(212,232,74,0.15) 0%, transparent 70%);
+top: -100px; right: -150px;
+animation: pulse 6s ease-in-out infinite;
+}
+
+.hero::after {
+content: ‘’;
+position: absolute;
+width: 400px; height: 400px;
+border-radius: 50%;
+background: radial-gradient(circle, rgba(212,232,74,0.1) 0%, transparent 70%);
+bottom: -80px; left: -100px;
+animation: pulse 8s ease-in-out infinite reverse;
+}
+
+@keyframes pulse {
+0%, 100% { transform: scale(1); opacity: 1; }
+50% { transform: scale(1.1); opacity: 0.7; }
+}
+
+.hero-badge {
+font-family: ‘Space Mono’, monospace;
+font-size: 11px;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(–limon);
+background: rgba(212,232,74,0.1);
+border: 1px solid rgba(212,232,74,0.3);
+padding: 8px 20px;
+border-radius: 100px;
+margin-bottom: 32px;
+position: relative;
+z-index: 1;
+animation: fadeDown 0.8s ease both;
+}
+
+.hero-logo {
+font-family: ‘Playfair Display’, serif;
+font-size: clamp(52px, 10vw, 96px);
+font-weight: 900;
+color: var(–blanco);
+line-height: 0.9;
+position: relative;
+z-index: 1;
+animation: fadeDown 0.8s 0.1s ease both;
+}
+
+.hero-logo span {
+color: var(–limon);
+display: block;
+}
+
+.hero-sub {
+font-size: clamp(14px, 2.5vw, 18px);
+color: rgba(255,255,255,0.7);
+max-width: 500px;
+margin: 24px auto 0;
+line-height: 1.6;
+position: relative;
+z-index: 1;
+animation: fadeDown 0.8s 0.2s ease both;
+}
+
+.hero-tags {
+display: flex;
+gap: 12px;
+flex-wrap: wrap;
+justify-content: center;
+margin-top: 40px;
+position: relative;
+z-index: 1;
+animation: fadeDown 0.8s 0.3s ease both;
+}
+
+.hero-tag {
+font-family: ‘Space Mono’, monospace;
+font-size: 11px;
+padding: 6px 14px;
+background: rgba(255,255,255,0.08);
+border: 1px solid rgba(255,255,255,0.2);
+color: rgba(255,255,255,0.8);
+border-radius: 100px;
+}
+
+.scroll-hint {
+position: absolute;
+bottom: 40px;
+left: 50%;
+transform: translateX(-50%);
+z-index: 1;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 8px;
+color: rgba(255,255,255,0.4);
+font-size: 11px;
+letter-spacing: 2px;
+animation: fadeDown 1s 0.8s ease both;
+}
+
+.scroll-arrow {
+width: 20px; height: 20px;
+border-right: 2px solid rgba(255,255,255,0.4);
+border-bottom: 2px solid rgba(255,255,255,0.4);
+transform: rotate(45deg);
+animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+0%, 100% { transform: rotate(45deg) translateY(0); }
+50% { transform: rotate(45deg) translateY(6px); }
+}
+
+@keyframes fadeDown {
+from { opacity: 0; transform: translateY(-20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── OBJETIVO ── */
+.objetivo {
+background: var(–limon);
+padding: 60px 24px;
+text-align: center;
+}
+
+.objetivo-inner {
+max-width: 700px;
+margin: 0 auto;
+}
+
+.objetivo-label {
+font-family: ‘Space Mono’, monospace;
+font-size: 11px;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(–verde);
+margin-bottom: 16px;
+}
+
+.objetivo h2 {
+font-family: ‘Playfair Display’, serif;
+font-size: clamp(24px, 4vw, 40px);
+color: var(–verde);
+line-height: 1.2;
+}
+
+/* ── STEPS CONTAINER ── */
+.steps-section {
+padding: 80px 24px;
+max-width: 900px;
+margin: 0 auto;
+}
+
+.section-header {
+text-align: center;
+margin-bottom: 60px;
+}
+
+.section-label {
+font-family: ‘Space Mono’, monospace;
+font-size: 11px;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(–verde-medio);
+margin-bottom: 12px;
+}
+
+.section-header h2 {
+font-family: ‘Playfair Display’, serif;
+font-size: clamp(28px, 5vw, 48px);
+color: var(–verde);
+}
+
+/* ── STEP CARD ── */
+.step-card {
+background: var(–blanco);
+border-radius: 24px;
+margin-bottom: 32px;
+overflow: hidden;
+box-shadow: 0 4px 30px rgba(45,80,22,0.08);
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+cursor: pointer;
+}
+
+.step-card:hover {
+transform: translateY(-4px);
+box-shadow: 0 12px 40px rgba(45,80,22,0.15);
+}
+
+.step-header {
+display: flex;
+align-items: center;
+gap: 20px;
+padding: 28px 32px;
+border-bottom: 1px solid rgba(45,80,22,0.08);
+}
+
+.step-number {
+width: 52px; height: 52px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: ‘Playfair Display’, serif;
+font-size: 22px;
+font-weight: 900;
+flex-shrink: 0;
+}
+
+.step-number.s1 { background: var(–limon); color: var(–verde); }
+.step-number.s2 { background: var(–verde); color: var(–limon); }
+.step-number.s3 { background: var(–acido); color: var(–blanco); }
+.step-number.s4 { background: var(–verde-medio); color: var(–blanco); }
+.step-number.s5 { background: var(–negro); color: var(–limon); }
+
+.step-title-wrap { flex: 1; }
+
+.step-time {
+font-family: ‘Space Mono’, monospace;
+font-size: 10px;
+color: var(–gris);
+letter-spacing: 2px;
+text-transform: uppercase;
+margin-bottom: 4px;
+}
+
+.step-title {
+font-family: ‘Playfair Display’, serif;
+font-size: clamp(18px, 3vw, 24px);
+color: var(–verde);
+font-weight: 700;
+}
+
+.step-toggle {
+width: 32px; height: 32px;
+border-radius: 50%;
+background: var(–crema);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 18px;
+transition: transform 0.3s ease;
+color: var(–verde);
+flex-shrink: 0;
+}
+
+.step-body {
+padding: 28px 32px;
+display: none;
+}
+
+.step-body.open { display: block; }
+.step-card.open .step-toggle { transform: rotate(180deg); }
+
+.step-desc {
+font-size: 15px;
+color: var(–gris);
+line-height: 1.7;
+margin-bottom: 20px;
+}
+
+.task-list {
+list-style: none;
+display: flex;
+flex-direction: column;
+gap: 12px;
+}
+
+.task-item {
+display: flex;
+align-items: flex-start;
+gap: 14px;
+padding: 16px;
+background: var(–crema);
+border-radius: 12px;
+font-size: 14px;
+line-height: 1.5;
+}
+
+.task-item input[type=“checkbox”] {
+width: 20px; height: 20px;
+accent-color: var(–verde);
+margin-top: 2px;
+flex-shrink: 0;
+cursor: pointer;
+}
+
+.task-item label { cursor: pointer; color: var(–negro); }
+.task-item input:checked + label { text-decoration: line-through; color: var(–gris); }
+
+.tip-box {
+background: linear-gradient(135deg, rgba(212,232,74,0.2), rgba(212,232,74,0.05));
+border-left: 4px solid var(–limon-dark);
+border-radius: 0 12px 12px 0;
+padding: 16px 20px;
+margin-top: 20px;
+font-size: 14px;
+color: var(–verde);
+line-height: 1.6;
+}
+
+.tip-box strong { display: block; margin-bottom: 4px; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
+
+.apps-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+gap: 12px;
+margin-top: 16px;
+}
+
+.app-chip {
+background: var(–crema);
+border: 1.5px solid rgba(45,80,22,0.15);
+border-radius: 12px;
+padding: 14px;
+text-align: center;
+font-size: 13px;
+font-weight: 500;
+color: var(–verde);
+transition: all 0.2s;
+}
+
+.app-chip:hover { background: var(–limon); border-color: var(–limon-dark); }
+.app-chip .app-icon { font-size: 24px; display: block; margin-bottom: 6px; }
+
+/* ── QR GENERATOR ── */
+.qr-section {
+background: var(–verde);
+padding: 80px 24px;
+position: relative;
+overflow: hidden;
+}
+
+.qr-section::before {
+content: ‘’;
+position: absolute;
+inset: 0;
+background: radial-gradient(circle, rgba(212,232,74,0.1) 0%, transparent 70%);}
+
+.qr-inner {
+max-width: 700px;
+margin: 0 auto;
+position: relative;
+z-index: 1;
+}
+
+.qr-inner .section-label { color: var(–limon); }
+.qr-inner h2 { font-family: ‘Playfair Display’, serif; font-size: clamp(28px,5vw,44px); color: var(–blanco); text-align: center; margin-bottom: 8px; }
+.qr-inner .section-header { margin-bottom: 40px; }
+.qr-inner .section-header p { color: rgba(255,255,255,0.6); font-size: 15px; }
+
+.qr-card {
+background: rgba(255,255,255,0.06);
+border: 1px solid rgba(255,255,255,0.12);
+border-radius: 24px;
+padding: 40px;
+backdrop-filter: blur(10px);
+}
+
+.qr-form-group {
+margin-bottom: 20px;
+}
+
+.qr-label {
+font-family: ‘Space Mono’, monospace;
+font-size: 11px;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(–limon);
+margin-bottom: 8px;
+display: block;
+}
+
+.qr-input {
+width: 100%;
+padding: 14px 18px;
+background: rgba(255,255,255,0.08);
+border: 1.5px solid rgba(255,255,255,0.15);
+border-radius: 12px;
+color: var(–blanco);
+font-family: ‘DM Sans’, sans-serif;
+font-size: 14px;
+outline: none;
+transition: border-color 0.2s;
+}
+
+.qr-input::placeholder { color: rgba(255,255,255,0.35); }
+.qr-input:focus { border-color: var(–limon); }
+
+.qr-btn {
+width: 100%;
+padding: 16px;
+background: var(–limon);
+color: var(–verde);
+font-family: ‘DM Sans’, sans-serif;
+font-weight: 700;
+font-size: 15px;
+border: none;
+border-radius: 14px;
+cursor: pointer;
+transition: all 0.2s;
+margin-top: 8px;
+letter-spacing: 0.5px;
+}
+
+.qr-btn:hover { background: var(–limon-dark); transform: translateY(-2px); }
+.qr-btn:active { transform: translateY(0); }
+
+.qr-result {
+margin-top: 32px;
+display: none;
+flex-direction: column;
+align-items: center;
+gap: 20px;
+}
+
+.qr-result.show { display: flex; }
+
+#qr-output {
+background: var(–blanco);
+padding: 20px;
+border-radius: 16px;
+display: inline-block;
+}
+
+.qr-download-btn {
+padding: 12px 28px;
+background: transparent;
+color: var(–limon);
+border: 1.5px solid var(–limon);
+border-radius: 100px;
+font-family: ‘DM Sans’, sans-serif;
+font-weight: 600;
+font-size: 14px;
+cursor: pointer;
+transition: all 0.2s;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.qr-download-btn:hover { background: var(–limon); color: var(–verde); }
+
+/* ── CHECKLIST ── */
+.checklist-section {
+padding: 80px 24px;
+max-width: 700px;
+margin: 0 auto;
+}
+
+.checklist-grid {
+display: flex;
+flex-direction: column;
+gap: 16px;
+margin-top: 40px;
+}
+
+.check-item {
+display: flex;
+align-items: center;
+gap: 16px;
+padding: 20px 24px;
+background: var(–blanco);
+border-radius: 16px;
+box-shadow: 0 2px 16px rgba(45,80,22,0.06);
+transition: all 0.2s;
+}
+
+.check-item:hover { transform: translateX(4px); }
+
+.check-item input[type=“checkbox”] {
+width: 22px; height: 22px;
+accent-color: var(–verde);
+flex-shrink: 0;
+cursor: pointer;
+}
+
+.check-item label {
+font-size: 15px;
+color: var(–negro);
+cursor: pointer;
+line-height: 1.4;
+}
+
+.check-item input:checked + label {
+text-decoration: line-through;
+color: var(–gris);
+}
+
+.check-item input:checked ~ .check-done { opacity: 1; }
+
+.progress-bar-wrap {
+background: rgba(45,80,22,0.1);
+border-radius: 100px;
+height: 8px;
+margin-top: 32px;
+overflow: hidden;
+}
+
+.progress-bar {
+height: 100%;
+background: linear-gradient(90deg, var(–verde), var(–limon));
+border-radius: 100px;
+width: 0%;
+transition: width 0.4s ease;
+}
+
+.progress-label {
+font-family: ‘Space Mono’, monospace;
+font-size: 12px;
+color: var(–verde-medio);
+text-align: center;
+margin-top: 12px;
+}
+
+/* ── PLANTILLA ── */
+.plantilla-section {
+background: var(–limon);
+padding: 80px 24px;
+}
+
+.plantilla-inner {
+max-width: 700px;
+margin: 0 auto;
+}
+
+.plantilla-inner .section-label { color: var(–verde); }
+.plantilla-inner h2 { font-family: ‘Playfair Display’, serif; font-size: clamp(28px,4vw,40px); color: var(–verde); text-align: center; margin-bottom: 40px; }
+
+.plantilla-card {
+background: var(–blanco);
+border-radius: 24px;
+padding: 40px;
+box-shadow: 0 8px 40px rgba(45,80,22,0.15);
+}
+
+.plantilla-card h3 {
+font-family: ‘Playfair Display’, serif;
+font-size: 20px;
+color: var(–verde);
+margin-bottom: 24px;
+padding-bottom: 16px;
+border-bottom: 2px dashed rgba(45,80,22,0.15);
+}
+
+.form-field {
+margin-bottom: 20px;
+}
+
+.form-field label {
+display: block;
+font-family: ‘Space Mono’, monospace;
+font-size: 10px;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(–gris);
+margin-bottom: 8px;
+}
+
+.form-field input, .form-field textarea, .form-field select {
+width: 100%;
+padding: 12px 16px;
+border: 1.5px solid rgba(45,80,22,0.15);
+border-radius: 10px;
+font-family: ‘DM Sans’, sans-serif;
+font-size: 14px;
+color: var(–negro);
+background: var(–crema);
+outline: none;
+transition: border-color 0.2s;
+resize: vertical;
+}
+
+.form-field input:focus, .form-field textarea:focus, .form-field select:focus {
+border-color: var(–verde);
+}
+
+.radio-group { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.radio-option {
+display: flex;
+align-items: center;
+gap: 8px;
+padding: 10px 16px;
+background: var(–crema);
+border: 1.5px solid rgba(45,80,22,0.15);
+border-radius: 100px;
+cursor: pointer;
+font-size: 14px;
+transition: all 0.2s;
+}
+
+.radio-option:has(input:checked) { background: var(–verde); color: var(–blanco); border-color: var(–verde); }
+.radio-option input { accent-color: var(–limon); }
+
+.print-btn {
+width: 100%;
+padding: 16px;
+background: var(–verde);
+color: var(–blanco);
+border: none;
+border-radius: 14px;
+font-family: ‘DM Sans’, sans-serif;
+font-weight: 600;
+font-size: 15px;
+cursor: pointer;
+margin-top: 24px;
+transition: all 0.2s;
+}
+
+.print-btn:hover { background: var(–verde-medio); transform: translateY(-2px); }
+
+/* ── FOOTER ── */
+footer {
+background: var(–negro);
+padding: 40px 24px;
+text-align: center;
+color: rgba(255,255,255,0.4);
+font-size: 13px;
+}
+
+footer strong { color: var(–limon); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+.step-header { padding: 20px; }
+.step-body { padding: 20px; }
+.qr-card { padding: 24px; }
+.plantilla-card { padding: 24px; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="hero-badge">Semana 3 · Sesión 2 · Diseño Digital & TIC</div>
+  <h1 class="hero-logo">
+    Dulce<span>& Ácido</span>
+  </h1>
+  <p class="hero-sub">Digitaliza tu cartografía social y conecta tu mapa físico con el mundo digital mediante códigos QR.</p>
+  <div class="hero-tags">
+    <span class="hero-tag">🍋 Pay de Limón Artesanal</span>
+    <span class="hero-tag">📍 Restrepo, Valle</span>
+    <span class="hero-tag">📱 Código QR</span>
+    <span class="hero-tag">🌿 Cultivo Propio</span>
+  </div>
+  <div class="scroll-hint">
+    <span>COMENZAR</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- OBJETIVO -->
+
+<section class="objetivo">
+  <div class="objetivo-inner">
+    <div class="objetivo-label">🎯 Objetivo de la Sesión</div>
+    <h2>Digitalizar los elementos de la cartografía social y crear una conexión entre el mapa físico y el mundo digital mediante códigos QR.</h2>
+  </div>
+</section>
+
+<!-- PASOS -->
+
+<section class="steps-section">
+  <div class="section-header">
+    <div class="section-label">📋 Paso a Paso</div>
+    <h2>Guía de Actividades</h2>
+  </div>
+
+  <!-- PASO 1 -->
+
+  <div class="step-card" onclick="toggleStep(this)">
+    <div class="step-header">
+      <div class="step-number s1">1</div>
+      <div class="step-title-wrap">
+        <div class="step-time">⏱ Momento 1</div>
+        <div class="step-title">Introducción — ¡Digitalizar la Memoria!</div>
+      </div>
+      <div class="step-toggle">▼</div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">Un inversionista o turista no siempre puede visitar tu negocio en Restrepo, pero <strong>sí puede escanear un código</strong>. Hoy convertirás los hallazgos de tu vereda en algo global.</p>
+      <div class="tip-box">
+        <strong>💡 Recuerda</strong>
+        Tu mapa de papel es el alma del proyecto — hoy le vamos a dar alas. Las TIC son el puente entre tu territorio y el mundo.
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 2 -->
+
+  <div class="step-card" onclick="toggleStep(this)">
+    <div class="step-header">
+      <div class="step-number s2">2</div>
+      <div class="step-title-wrap">
+        <div class="step-time">⏱ 15 minutos</div>
+        <div class="step-title">Digitalización de Iconos</div>
+      </div>
+      <div class="step-toggle">▼</div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">Convierte tus dibujos manuales en archivos digitales limpios con fondo transparente.</p>
+      <ul class="task-list">
+        <li class="task-item">
+          <input type="checkbox" id="t2a">
+          <label for="t2a"><strong>Archivo 1:</strong> El ícono del Pasado (limpio y digital) — Ej: mula cargada como transporte antiguo.</label>
+        </li>
+        <li class="task-item">
+          <input type="checkbox" id="t2b">
+          <label for="t2b"><strong>Archivo 2:</strong> El ícono del Presente / Problemática (limpio y digital).</label>
+        </li>
+        <li class="task-item">
+          <input type="checkbox" id="t2c">
+          <label for="t2c"><strong>Archivo 3:</strong> El logo de Dulce y Ácido (limpio y digital, PNG transparente).</label>
+        </li>
+      </ul>
+      <div class="apps-grid" style="margin-top:20px;">
+        <div class="app-chip"><span class="app-icon">📷</span>CamScanner</div>
+        <div class="app-chip"><span class="app-icon">✂️</span>Remove.bg</div>
+        <div class="app-chip"><span class="app-icon">🎨</span>Adobe Express</div>
+        <div class="app-chip"><span class="app-icon">📱</span>Cámara del Celular</div>
+      </div>
+      <div class="tip-box">
+        <strong>💡 Resultado esperado</strong>
+        Foto nítida → quitar fondo blanco → guardar como PNG transparente.
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 3 -->
+
+  <div class="step-card" onclick="toggleStep(this)">
+    <div class="step-header">
+      <div class="step-number s3">3</div>
+      <div class="step-title-wrap">
+        <div class="step-time">⏱ 20 minutos</div>
+        <div class="step-title">Creación del Vínculo QR</div>
+      </div>
+      <div class="step-toggle">▼</div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">Aquí ocurre la magia. El mapa físico se conectará con información profunda sobre Dulce y Ácido.</p>
+      <ul class="task-list">
+        <li class="task-item">
+          <input type="checkbox" id="t3a">
+          <label for="t3a">Sube tu video, audio o galería de fotos a <strong>Google Drive</strong> y configura el acceso como "Cualquier persona con el enlace puede leer".</label>
+        </li>
+        <li class="task-item">
+          <input type="checkbox" id="t3b">
+          <label for="t3b">Copia el enlace para compartir del archivo subido.</label>
+        </li>
+        <li class="task-item">
+          <input type="checkbox" id="t3c">
+          <label for="t3c">Usa el <strong>Generador QR</strong> de esta página (sección abajo) o una herramienta externa para crear tu QR.</label>
+        </li>
+        <li class="task-item">
+          <input type="checkbox" id="t3d">
+          <label for="t3d">Descarga la imagen del QR y pégala en tu plantilla de georreferenciación.</label>
+        </li>
+      </ul>
+      <div class="apps-grid" style="margin-top:20px;">
+        <div class="app-chip"><span class="app-icon">🔳</span>QR Code Monkey</div>
+        <div class="app-chip"><span class="app-icon">🎨</span>Canva QR</div>
+        <div class="app-chip"><span class="app-icon">🤗</span>Hugging Face QR</div>
+        <div class="app-chip"><span class="app-icon">⬇️</span>Esta Página</div>
+      </div>
+      <div class="tip-box">
+        <strong>💡 Ejemplo</strong>
+        "Escanea aquí para escuchar la historia de cómo nació Dulce y Ácido en Restrepo y por qué cultivamos nuestros propios limones."
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 4 -->
+
+  <div class="step-card" onclick="toggleStep(this)">
+    <div class="step-header">
+      <div class="step-number s4">4</div>
+      <div class="step-title-wrap">
+        <div class="step-time">⏱ 20 minutos</div>
+        <div class="step-title">Montaje en el Mapa Digital</div>
+      </div>
+      <div class="step-toggle">▼</div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">Ubica Dulce y Ácido en el mapa digital para que cualquier persona pueda "entrar" a la experiencia de tu negocio.</p>
+
+
+  <p style="font-family:'Space Mono',monospace;font-size:11px;color:var(--verde);letter-spacing:2px;margin-bottom:12px;">OPCIÓN A — GOOGLE EARTH</p>
+  <ul class="task-list">
+    <li class="task-item"><input type="checkbox" id="t4a"><label for="t4a">Abrir <strong>Google Earth Web</strong> y buscar Restrepo, Valle del Cauca.</label></li>
+    <li class="task-item"><input type="checkbox" id="t4b"><label for="t4b">Crear "Nuevo Proyecto" y seleccionar "Añadir marcador".</label></li>
+    <li class="task-item"><input type="checkbox" id="t4c"><label for="t4c">Hacer clic en la ubicación exacta de Dulce y Ácido en la Vereda San Pablo.</label></li>
+    <li class="task-item"><input type="checkbox" id="t4d"><label for="t4d">En la descripción del punto, pegar el mismo enlace que usaste para el QR.</label></li>
+  </ul>
+
+  <p style="font-family:'Space Mono',monospace;font-size:11px;color:var(--verde);letter-spacing:2px;margin:20px 0 12px;">OPCIÓN B — CANVA</p>
+  <ul class="task-list">
+    <li class="task-item"><input type="checkbox" id="t4e"><label for="t4e">Subir la imagen del mapa de tu zona a Canva.</label></li>
+    <li class="task-item"><input type="checkbox" id="t4f"><label for="t4f">Buscar en "Elementos" un ícono de ubicación (pin) y arrastrarlo al lugar de Dulce y Ácido.</label></li>
+    <li class="task-item"><input type="checkbox" id="t4g"><label for="t4g">Colocar el código QR generado junto al ícono o en una leyenda lateral.</label></li>
+  </ul>
+</div>
+
+
+  </div>
+
+  <!-- PASO 5 -->
+
+  <div class="step-card" onclick="toggleStep(this)">
+    <div class="step-header">
+      <div class="step-number s5">5</div>
+      <div class="step-title-wrap">
+        <div class="step-time">⏱ Reflexión Final</div>
+        <div class="step-title">Definición de la Relación Social</div>
+      </div>
+      <div class="step-toggle">▼</div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">Este es el componente crítico. No solo estás marcando un negocio — estás marcando una <strong>intención social</strong>.</p>
+      <ul class="task-list">
+        <li class="task-item"><input type="checkbox" id="t5a"><label for="t5a"><strong>¿Qué denuncia marcas?</strong> Ej: "Falta de canales de distribución para productores rurales en Restrepo."</label></li>
+        <li class="task-item"><input type="checkbox" id="t5b"><label for="t5b"><strong>¿Qué propuesta marcas?</strong> Ej: "Dulce y Ácido crea empleo local y valoriza el limón cultivado en la vereda."</label></li>
+      </ul>
+      <div class="tip-box">
+        <strong>💡 Para Dulce y Ácido</strong>
+        Tu ventaja competitiva es cultivar tus propios limones. Eso es una propuesta de valor social y ambiental. ¡Cuéntalo en tu QR!
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QR GENERATOR -->
+
+<section class="qr-section">
+  <div class="qr-inner">
+    <div class="section-header">
+      <div class="section-label">🔳 Herramienta</div>
+      <h2>Generador de Código QR</h2>
+      <p>Pega el enlace de tu Google Drive, video o audio y genera tu QR al instante.</p>
+    </div>
+    <div class="qr-card">
+      <div class="qr-form-group">
+        <label class="qr-label">Nombre del punto en el mapa</label>
+        <input type="text" class="qr-input" id="qr-name" placeholder="Ej: Dulce y Ácido — Vereda San Pablo">
+      </div>
+      <div class="qr-form-group">
+        <label class="qr-label">Enlace de Google Drive / Video / Audio</label>
+        <input type="url" class="qr-input" id="qr-url" placeholder="https://drive.google.com/...">
+      </div>
+      <button class="qr-btn" onclick="generateQR()">🔳 Generar Código QR</button>
+
+
+  <div class="qr-result" id="qr-result">
+    <p id="qr-name-display" style="color:rgba(255,255,255,0.7);font-size:14px;text-align:center;"></p>
+    <div id="qr-output"></div>
+    <button class="qr-download-btn" onclick="downloadQR()">⬇ Descargar QR</button>
+  </div>
+</div>
+
+
+  </div>
+</section>
+
+<!-- PLANTILLA GEORREFERENCIACIÓN -->
+
+<section class="plantilla-section">
+  <div class="plantilla-inner">
+    <div style="text-align:center;">
+      <div class="section-label">📋 Plantilla</div>
+      <h2>Plantilla de Georreferenciación</h2>
+    </div>
+    <div class="plantilla-card">
+      <h3>Para pegar en el mapa físico — Dulce y Ácido</h3>
+
+
+  <div class="form-field">
+    <label>Nombre del Punto</label>
+    <input type="text" placeholder="Ej: Dulce y Ácido — Finca Los Limones">
+  </div>
+
+  <div class="form-field">
+    <label>Coordenada / Vereda</label>
+    <input type="text" placeholder="Ej: Vereda San Pablo, Restrepo, Valle">
+  </div>
+
+  <div class="form-field">
+    <label>Tipo de Contenido del QR</label>
+    <div class="radio-group">
+      <label class="radio-option"><input type="radio" name="contenido" value="video"> 🎬 Video</label>
+      <label class="radio-option"><input type="radio" name="contenido" value="audio"> 🎙️ Audio</label>
+      <label class="radio-option"><input type="radio" name="contenido" value="fotos"> 📸 Galería de Fotos</label>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label>Relación Social — ¿Qué denuncia o propuesta marcas aquí?</label>
+    <textarea rows="4" placeholder="Ej: Proponemos valorizar el limón cultivado en Restrepo como materia prima local, reduciendo intermediarios y fortaleciendo la economía de la vereda..."></textarea>
+  </div>
+
+  <div class="form-field">
+    <label>Enlace del Contenido Digital</label>
+    <input type="url" placeholder="https://drive.google.com/...">
+  </div>
+
+  <button class="print-btn" onclick="window.print()">🖨️ Imprimir Plantilla</button>
+</div>
+
+
+  </div>
+</section>
+
+<!-- CHECKLIST FINAL -->
+
+<section class="checklist-section">
+  <div class="section-header">
+    <div class="section-label">✅ Lista de Chequeo</div>
+    <h2>¿Completaste la sesión?</h2>
+  </div>
+
+  <div class="checklist-grid" id="checklist">
+    <div class="check-item">
+      <input type="checkbox" id="c1" onchange="updateProgress()">
+      <label for="c1">¿Tenemos al menos 3 íconos con fondo transparente (PNG)?</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c2" onchange="updateProgress()">
+      <label for="c2">¿El código QR funciona y dirige a la información correcta?</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c3" onchange="updateProgress()">
+      <label for="c3">¿El diseño del QR respeta los colores de Dulce y Ácido?</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c4" onchange="updateProgress()">
+      <label for="c4">¿Ubicamos el QR físicamente sobre el mapa de la Semana 1?</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c5" onchange="updateProgress()">
+      <label for="c5">¿Completamos la Plantilla de Georreferenciación?</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c6" onchange="updateProgress()">
+      <label for="c6">¿Definimos claramente nuestra denuncia o propuesta social?</label>
+    </div>
+  </div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+  <div class="progress-label" id="progress-label">0 / 6 completados</div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <p><strong>Dulce y Ácido</strong> · Restrepo, Valle del Cauca · Pay de Limón Artesanal 🍋</p>
+  <p style="margin-top:8px;">Semana 3 · Sesión 2 · Diseño Digital y TIC · Proyecto Integrador</p>
+</footer>
+
+<script>
+  // Toggle Steps
+  function toggleStep(card) {
+    const body = card.querySelector('.step-body');
+    const isOpen = card.classList.contains('open');
+    document.querySelectorAll('.step-card').forEach(c => {
+      c.classList.remove('open');
+      c.querySelector('.step-body').classList.remove('open');
+    });
+    if (!isOpen) {
+      card.classList.add('open');
+      body.classList.add('open');
+    }
+  }
+
+  // QR Generator
+  let qrCode = null;
+
+  function generateQR() {
+    const url = document.getElementById('qr-url').value.trim();
+    const name = document.getElementById('qr-name').value.trim();
+    if (!url) { alert('Por favor ingresa un enlace para generar el QR.'); return; }
+
+    const output = document.getElementById('qr-output');
+    output.innerHTML = '';
+
+    if (qrCode) { qrCode.clear(); qrCode = null; }
+
+    qrCode = new QRCode(output, {
+      text: url,
+      width: 220,
+      height: 220,
+      colorDark: '#2D5016',
+      colorLight: '#F9F4E3',
+      correctLevel: QRCode.CorrectLevel.H
+    });
+
+    const result = document.getElementById('qr-result');
+    result.classList.add('show');
+    document.getElementById('qr-name-display').textContent = name ? `📍 ${name}` : '';
+
+    result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function downloadQR() {
+    const canvas = document.querySelector('#qr-output canvas');
+    const img = document.querySelector('#qr-output img');
+    if (canvas) {
+      const link = document.createElement('a');
+      link.download = 'QR-Dulce-y-Acido.png';
+      link.href = canvas.toDataURL();
+      link.click();
+    } else if (img) {
+      const link = document.createElement('a');
+      link.download = 'QR-Dulce-y-Acido.png';
+      link.href = img.src;
+      link.click();
+    }
+  }
+
+  // Progress
+  function updateProgress() {
+    const checks = document.querySelectorAll('#checklist input[type="checkbox"]');
+    const done = Array.from(checks).filter(c => c.checked).length;
+    const pct = (done / checks.length) * 100;
+    document.getElementById('progress-bar').style.width = pct + '%';
+    document.getElementById('progress-label').textContent = `${done} / ${checks.length} completados`;
+  }
+</script>
+
+</body>
+</html>
